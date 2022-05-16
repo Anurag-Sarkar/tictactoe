@@ -123,9 +123,11 @@ function winning(){
         return "oc1"
     }
     if (b4 === circle && b5 === circle && b6 === circle){
+        line.style.top = "15px"
         line.style.opacity = "100"
         line.style.left = "206px"
         disable()
+        console.log("lol")
         line.style.height = "400px"
         line.style.width = "8px"
         return "oc2"   
