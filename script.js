@@ -1,12 +1,16 @@
 var move = 1
 var line = document.getElementById("winline")
+var c = 0
+var o = 0
 function plae(place,item){
     if (item === "circle"){
         
         document.querySelector(place).innerHTML = `<i class="ri-checkbox-blank-circle-line"></i>`
+        document.querySelector(place).style.opacity = "100%"
     }
     else {
         document.querySelector(place).innerHTML = `<i class="ri-close-fill"></i>`
+        document.querySelector(place).style.opacity = "100%"
 
     }
 }
@@ -42,7 +46,7 @@ function winning(){
         line.style.top = "15px"
         line.style.left = "66px"
         disable()
-        return "cc1"
+        return "c"
     }
     if (b4 === cross && b5 === cross && b6 === cross){
         line.style.opacity = "100"
@@ -51,7 +55,7 @@ function winning(){
         disable()
         line.style.height = "400px"
         line.style.width = "8px"
-        return "cc2"   
+        return "c"   
     }
     if (b7 === cross && b8 === cross && b9 === cross){
         line.style.opacity = "100"
@@ -60,7 +64,7 @@ function winning(){
         disable()
         line.style.height = "400px"
         line.style.width = "8px"
-        return "cc3"
+        return "c"
     }
     if (b1 === cross && b4 === cross && b7 === cross){
         
@@ -71,7 +75,7 @@ function winning(){
         disable()
         line.style.height = "400px"
         line.style.width = "8px"
-        return "cr1"
+        return "c"
     }
     if (b2 === cross && b5 === cross && b8 === cross){
         line.style.opacity = "100"
@@ -81,7 +85,7 @@ function winning(){
         disable()
         line.style.height = "400px"
         line.style.width = "8px"
-        return "cr2"
+        return "c"
     }
     if (b3 === cross && b6 === cross && b9 === cross){
         line.style.opacity = "100"
@@ -91,7 +95,7 @@ function winning(){
         disable()
         line.style.height = "400px"
         line.style.width = "8px"
-        return "cr3"
+        return "c"
     }
     if (b1 === cross && b5 === cross && b9 === cross){
         line.style.opacity = "100"
@@ -101,7 +105,7 @@ function winning(){
         disable()
         line.style.height = "400px"
         line.style.width = "8px"
-        return "cd1"
+        return "c"
     }
     if (b3 === cross && b5 === cross && b7 === cross){
         line.style.opacity = "100"
@@ -111,7 +115,7 @@ function winning(){
         disable()
         line.style.height = "400px"
         line.style.width = "8px"
-        return "cd2"
+        return "c"
     }
     if (b1 === circle && b2 === circle && b3 === circle){
         line.style.opacity = "100"
@@ -120,17 +124,16 @@ function winning(){
         disable()
         line.style.height = "400px"
         line.style.width = "8px"
-        return "oc1"
+        return "o"
     }
     if (b4 === circle && b5 === circle && b6 === circle){
         line.style.top = "15px"
         line.style.opacity = "100"
         line.style.left = "206px"
         disable()
-        console.log("lol")
         line.style.height = "400px"
         line.style.width = "8px"
-        return "oc2"   
+        return "o"   
     }
     if (b7 === circle && b8 === circle && b9 === circle){
         line.style.opacity = "100"
@@ -139,7 +142,7 @@ function winning(){
         disable()
         line.style.height = "400px"
         line.style.width = "8px"
-        return "oc3"
+        return "o"
     }
     if (b1 === circle && b4 === circle && b7 === circle){
         line.style.opacity = "100"
@@ -149,7 +152,7 @@ function winning(){
         disable()
         line.style.height = "400px"
         line.style.width = "8px"
-        return "or1"
+        return "o"
     }
     if (b2 === circle && b5 === circle && b8 === circle){
         line.style.opacity = "100"
@@ -159,7 +162,7 @@ function winning(){
         disable()
         line.style.height = "400px"
         line.style.width = "8px"
-        return "or2"
+        return "o"
     }
     if (b3 === circle && b6 === circle && b9 === circle){
         line.style.opacity = "100"
@@ -169,7 +172,7 @@ function winning(){
         disable()
         line.style.height = "400px"
         line.style.width = "8px"
-        return "or3"
+        return "o"
     }
     if (b1 === circle && b5 === circle && b9 === circle){
         line.style.opacity = "100"
@@ -179,7 +182,7 @@ function winning(){
         disable()
         line.style.height = "400px"
         line.style.width = "8px"
-        return "od1"
+        return "o"
     }
     if (b3 === circle && b5 === circle && b7 === circle){
         line.style.transform = "rotate(45deg)"
@@ -189,15 +192,33 @@ function winning(){
         disable()
         line.style.height = "400px"
         line.style.width = "8px"
-        return "od2"
+        return "o"
         
     }
-    
 }
+function reset(){
+    document.querySelector("#pl1").style.backgroundColor = "white"
+    document.querySelector("#pl2").style.backgroundColor = "white"
+    line.style.opacity = "0"
+    document.querySelector(".box1").innerHTML = " "
+    document.querySelector(".box2").innerHTML = " "
+    document.querySelector(".box3").innerHTML = " "
+    document.querySelector(".box4").innerHTML = " "
+    document.querySelector(".box5").innerHTML = " "
+    document.querySelector(".box6").innerHTML = " "
+    document.querySelector(".box7").innerHTML = " "
+    document.querySelector(".box8").innerHTML = " "
+    document.querySelector(".box9").innerHTML = " "
+    }
+
+document.querySelector(".reset").addEventListener("click",function(){
+    reset()
+})
 
 
 document.querySelector(".box1").addEventListener("click",function(){
     if (move%2 === 0 && document.querySelector(".box1").innerHTML === " "){
+        console.log("hello")
         plae(".box1","circle")
         move++
     }
@@ -205,9 +226,20 @@ document.querySelector(".box1").addEventListener("click",function(){
         plae(".box1","l")
         move++
     }
-    if (winning()){
-        console.log(winning())
-    }
+    var x = winning() 
+        if (x === "c"){
+            c++
+            document.querySelector(".scr1").textContent = c
+            document.querySelector("#pl1").style.backgroundColor = "green"
+            console.log(c)
+        }
+        else if (x === "o"){
+            o++
+            document.querySelector("#pl2").style.backgroundColor = "green"
+            document.querySelector(".scr2").textContent = o
+            console.log(o)
+        }
+    
     
     
 })
@@ -221,10 +253,21 @@ document.querySelector(".box2").addEventListener("click",function(){
         plae(".box2","l")
         move++
     }
-    if (winning()){
-        console.log(winning())
-    }
-    
+    var x = winning() 
+    console.log(x)
+    if (x === "c"){
+        c++
+        document.querySelector("#pl1").style.backgroundColor = "green"
+            document.querySelector(".scr1").textContent = c
+            console.log(c)
+        }
+        else if (x === "o"){
+            o++
+            document.querySelector("#pl2").style.backgroundColor = "green"
+            document.querySelector(".scr2").textContent = o
+            console.log(o)
+        }
+        
 })
 document.querySelector(".box3").addEventListener("click",function(){
     if (move%2 === 0 && document.querySelector(".box3").innerHTML === " "){
@@ -235,9 +278,20 @@ document.querySelector(".box3").addEventListener("click",function(){
         plae(".box3","l")
         move++
     }
-    if (winning()){
-        console.log(winning())
-    }
+    var x = winning() 
+    console.log(x)
+        if (x === "c"){
+            c++
+            document.querySelector(".scr1").textContent = c
+            document.querySelector("#pl1").style.backgroundColor = "green"
+            console.log(c)
+        }
+        else if (x === "o"){
+            o++
+            document.querySelector("#pl2").style.backgroundColor = "green"
+            document.querySelector(".scr2").textContent = o
+            console.log(o)
+        }
 })
 document.querySelector(".box4").addEventListener("click",function(){
     if (move%2 === 0 && document.querySelector(".box4").innerHTML === " "){
@@ -248,9 +302,20 @@ document.querySelector(".box4").addEventListener("click",function(){
         plae(".box4","l")
         move++
     }
-    if (winning()){
-        console.log(winning())
-    }
+    var x = winning() 
+    console.log(x)
+        if (x === "c"){
+            c++
+            document.querySelector(".scr1").textContent = c
+            document.querySelector("#pl1").style.backgroundColor = "green"
+            console.log(c)
+        }
+        else if (x === "o"){
+            o++
+            document.querySelector(".scr2").textContent = o
+            document.querySelector("#pl2").style.backgroundColor = "green"
+            console.log(o)
+        }
 })
 document.querySelector(".box5").addEventListener("click",function(){
     if (move%2 === 0 && document.querySelector(".box5").innerHTML === " "){
@@ -261,9 +326,20 @@ document.querySelector(".box5").addEventListener("click",function(){
         plae(".box5","l")
         move++
     }
-    if (winning()){
-        console.log(winning())
-    }
+    var x = winning() 
+    console.log(x)
+        if (x === "c"){
+            c++
+            document.querySelector(".scr1").textContent = c
+            document.querySelector("#pl1").style.backgroundColor = "green"
+            console.log(c)
+        }
+        else if (x === "o"){
+            o++
+            document.querySelector("#pl2").style.backgroundColor = "green"
+            document.querySelector(".scr2").textContent = o
+            console.log(o)
+        }
 })
 document.querySelector(".box6").addEventListener("click",function(){
     if (move%2 === 0 && document.querySelector(".box6").innerHTML === " "){
@@ -274,9 +350,20 @@ document.querySelector(".box6").addEventListener("click",function(){
         plae(".box6","l")
         move++
     }
-    if (winning()){
-        console.log(winning())
+    var x = winning() 
+    console.log(x)
+    if (x === "c"){
+        c++
+        document.querySelector("#pl1").style.backgroundColor = "green"
+        document.querySelector(".scr1").textContent = c
+        console.log(c)
     }
+    else if (x === "o"){
+        o++
+        document.querySelector("#pl2").style.backgroundColor = "green"
+            document.querySelector(".scr2").textContent = o
+            console.log(o)
+        }
 })
 document.querySelector(".box7").addEventListener("click",function(){
     if (move%2 === 0 && document.querySelector(".box7").innerHTML === " "){
@@ -287,9 +374,20 @@ document.querySelector(".box7").addEventListener("click",function(){
         plae(".box7","l")
         move++
     }
-    if (winning()){
-        console.log(winning())
-    }
+    var x = winning() 
+    console.log(x)
+        if (x === "c"){
+            c++
+            document.querySelector(".scr1").textContent = c
+            document.querySelector("#pl1").style.backgroundColor = "green"
+            console.log(c)
+        }
+        else if (x === "o"){
+            o++
+            document.querySelector("#pl2").style.backgroundColor = "green"
+            document.querySelector(".scr2").textContent = o
+            console.log(o)
+        }
 })
 document.querySelector(".box8").addEventListener("click",function(){
     if (move%2 === 0 && document.querySelector(".box8").innerHTML === " "){
@@ -300,9 +398,20 @@ document.querySelector(".box8").addEventListener("click",function(){
         plae(".box8","l")
         move++
     }
-    if (winning()){
-        console.log(winning())
+    var x = winning() 
+    console.log(x)
+    if (x === "c"){
+        c++
+        document.querySelector("#pl1").style.backgroundColor = "green"
+        document.querySelector(".scr1").textContent = c
+        console.log(c)
     }
+    else if (x === "o"){
+        o++
+        document.querySelector("#pl2").style.backgroundColor = "green"
+            document.querySelector(".scr2").textContent = o
+            console.log(o)
+        }
 })
 document.querySelector(".box9").addEventListener("click",function(){
     if (move%2 === 0 && document.querySelector(".box9").innerHTML === " "){
@@ -313,7 +422,18 @@ document.querySelector(".box9").addEventListener("click",function(){
         plae(".box9","l")
         move++
     }
-    if (winning()){
-        console.log(winning())
-    }
+    var x = winning() 
+    console.log(x,"c")
+        if (x === "c"){
+            c++
+            document.querySelector(".scr1").textContent = c
+            document.querySelector("#pl1").style.backgroundColor = "green"
+            console.log("")
+        }
+        else if (x === "o"){
+            o++
+            document.querySelector("#pl2").style.backgroundColor = "green"
+            document.querySelector(".scr2").textContent = o
+            console.log(o)
+        }
 })
