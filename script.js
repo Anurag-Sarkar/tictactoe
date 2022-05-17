@@ -197,6 +197,15 @@ function winning(){
     }
 }
 function reset(){
+    document.querySelector(".box1").style.pointerEvents = "auto"
+    document.querySelector(".box2").style.pointerEvents = "auto"
+    document.querySelector(".box3").style.pointerEvents = "auto"
+    document.querySelector(".box4").style.pointerEvents = "auto"
+    document.querySelector(".box5").style.pointerEvents = "auto"
+    document.querySelector(".box6").style.pointerEvents = "auto"
+    document.querySelector(".box7").style.pointerEvents = "auto"
+    document.querySelector(".box8").style.pointerEvents = "auto"
+    document.querySelector(".box9").style.pointerEvents = "auto"
     document.querySelector("#pl1").style.backgroundColor = "white"
     document.querySelector("#pl2").style.backgroundColor = "white"
     line.style.opacity = "0"
